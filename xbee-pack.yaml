@@ -1,0 +1,14 @@
+schema-version: 1.0
+
+description: |
+
+builder: ./git-builder
+
+var:
+  version: 2.34.1
+
+
+provision:
+  - copy:
+      builder: git
+      todir: /
