@@ -1,14 +1,30 @@
 schema-version: 1.0
 
+type: builder
+
 description: |
 
-builder: ./git-builder
-
-var:
+in:
   version: 2.34.1
 
+dependencies:
+  - openssl
+  - zlib
+  - curl
+  - expat
+  - tcl
+  - gettext
 
 provision:
-  - copy:
-      builder: git
-      todir: /
+  - url:
+      from: https://github.com/git/git/archive/refs/tags/v{% version %}.tar.gz
+      todir: "{% srcDir %}"
+
+build:
+  - shell:
+      cmds:
+        - make prefix=/usr all
+        - make prefix=/usr install DESTDIR={% exportDir %}
+      directory: "{% srcDir %}/git-{% version %}"
+  - export: "{% exportDir %}"
+
