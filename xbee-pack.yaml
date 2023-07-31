@@ -4,7 +4,7 @@ type: builder
 
 description: |
 
-in:
+var:
   version: 2.34.1
 
 dependencies:
@@ -17,14 +17,14 @@ dependencies:
 
 provision:
   - url:
-      from: https://github.com/git/git/archive/refs/tags/v{% version %}.tar.gz
-      todir: "{% xbeeSrc %}"
+      from: https://github.com/git/git/archive/refs/tags/v{{ .version }}.tar.gz
+      todir: "{{ .xbee.src }}"
 
 build:
   - shell:
       cmds:
         - make prefix=/usr all
-        - make prefix=/usr install DESTDIR={% xbeeOut %}
-      directory: "{% xbeeSrc %}/git-{% version %}"
+        - make install DESTDIR={{ .xbee.out }}
+      directory: "{{ .xbee.src }}/git-{{ .version }}"
 
 
