@@ -5,7 +5,7 @@ type: builder
 description: |
 
 var:
-  version: 2.34.1
+  version: 2.39.2
 
 dependencies:
   - openssl
@@ -17,14 +17,16 @@ dependencies:
 
 provision:
   - url:
-      from: https://github.com/git/git/archive/refs/tags/v{{ .version }}.tar.gz
+#      from: https://github.com/git/git/archive/refs/tags/v{{ .version }}.tar.gz
+      from: https://www.kernel.org/pub/software/scm/git/git-{{ .version }}.tar.xz
       todir: "{{ .xbee.src }}"
 
 build:
   - shell:
       cmds:
-        - make prefix=/usr all
-        - make install DESTDIR={{ .xbee.out }}
+        - ./configure --prefix=/usr --with-gitconfig=/etc/gitconfig --with-python=python3
+        - make
+        - make perllibdir=/usr/lib/perl5/5.36/site_perl install DESTDIR={{ .xbee.out }}
       directory: "{{ .xbee.src }}/git-{{ .version }}"
 
 
