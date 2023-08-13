@@ -7,13 +7,16 @@ description: |
 var:
   version: 2.39.2
 
-dependencies:
-  - openssl
+builders:
   - zlib
   - curl
   - expat
   - tcl
   - gettext
+
+dependencies:
+  - openssl
+
 
 provision:
   - url:
