@@ -9,14 +9,13 @@ var:
 
 builders:
   - zlib
-  - curl
   - expat
   - tcl
   - gettext
 
 dependencies:
   - openssl
-
+  - curl
 
 provision:
   url: https://www.kernel.org/pub/software/scm/git/git-{{ .version }}.tar.xz
