@@ -3,7 +3,8 @@ schema-version: 1.0
 description: |
 
 var:
-  version: 2.39.2
+  xbee:
+    version: 2.39.2
 
 builders:
   - ./git-builder

@@ -5,7 +5,8 @@ type: builder
 description: |
 
 var:
-  version:
+  xbee:
+    version:
 
 builders:
   - zlib
@@ -18,7 +19,7 @@ dependencies:
   - curl
 
 provision:
-  url: https://www.kernel.org/pub/software/scm/git/git-{{ .version }}.tar.xz
+  url: https://www.kernel.org/pub/software/scm/git/git-{{ .xbee.version }}.tar.xz
 
 build:
   - shell:
@@ -26,6 +27,6 @@ build:
         - ./configure --prefix=/usr --with-gitconfig=/etc/gitconfig --with-python=python3
         - make
         - make perllibdir=/usr/lib/perl5/5.36/site_perl install DESTDIR={{ .xbee.out }}
-      directory: "{{ .xbee.src }}/git-{{ .version }}"
+      directory: "{{ .xbee.src }}/git-{{ .xbee.version }}"
 
 
