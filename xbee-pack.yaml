@@ -6,11 +6,9 @@ var:
   xbee:
     version: 2.39.2
 
-builders:
-  - ./git-builder
+builder: ./git-builder
 
-dependencies:
-  - curl
+dependency: curl
 
 
 

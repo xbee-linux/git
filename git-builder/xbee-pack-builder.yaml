@@ -1,20 +1,18 @@
 schema-version: 1.0
 
-type: builder
-
 description: |
 
 var:
   xbee:
     version:
 
-builders:
+builder:
   - zlib
   - expat
   - tcl
   - gettext
 
-dependencies:
+dependency:
   - openssl
   - curl
 
